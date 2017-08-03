@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, textarea, select, table, tr, td, header, nav, section, article, footer { margin: 0; padding: 0; }
+body { font-size: 12px; color: #444; font-family: microsoft yahei,Verdana,Arial,"微软雅黑"; background: #fff;}
+input {outline: none;}
+img { border: none; }
+ul, ol { list-style-type: none; }
+a { font-size: 12px; text-decoration: none; color: #444; }
+.clearfix:after { content: '.'; height: 0; visibility: hidden; display: block; clear: both;}
+
+#left_side { width: 170px; height: 100%; overflow: hidden; background: #424F63; position: fixed; top: 50px; z-index: 100;}
+#nav { width: 1920px; height: 50px; background:#424F63; position: fixed; top: 0; left: 0; z-index: 100;}
+#content { padding-top: 50px; margin-left: 170px; background: #eff0f4; overflow-y:hidden; height: 100%; width: 100%; position: fixed; z-index: 99; }
+#content_iframe { height: 100%; width: 100%;}
+</style>
+
+</head>
+<body>
+<div id="left_side"></div>
+<div id="nav"></div>
+<div id="content">
+	<iframe name="content" id="content_iframe" src="game_admin.html" style="border: 0px; width: 100%; "></iframe>
+</div>
+
+
+
+
+<script type="text/javascript">
+	//iframe自适应宽高
+	function iFrameHeight() {
+		var ifm = document.getElementById("content_iframe");
+//			    ifm.height = window.screen.height -55;
+	    ifm.height = document.documentElement.clientHeight-60 || document.body.clientHeight-60;
+	};
+	window.onresize = window.onload = iFrameHeight;
+	//屏蔽浏览器默认的提示框
+	window.alert = function(str) {
+		return ;
+	}
+
+</script>
+</body>
+</html>

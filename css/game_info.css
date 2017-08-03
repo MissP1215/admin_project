@@ -1,0 +1,44 @@
+@charset "utf-8";
+body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, textarea, select, table, tr, td, header, nav, section, article, footer { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-size: 12px; color: #444; font-family: microsoft yahei,Verdana,Arial,"微软雅黑"; background: #fff;}
+input {outline: none;}
+img { border: none; }
+ul, ol { list-style-type: none; }
+a { font-size: 12px; text-decoration: none; color: #444; }
+label { font-weight: normal;}
+.clearfix:after { content: '.'; height: 0; visibility: hidden; display: block; clear: both;}
+
+.g-body { width: 1750px; background: #eff0f4 none repeat scroll 0 0; overflow-x:auto; padding-top: 10px;}
+.g-wrap { padding: 15px; margin: 15px 0 0 15px; background: #fff;}
+
+.g-wrap .g-info-header a { font-size: 12px; }
+.g-wrap .g-info-table { width: 100%; margin: 20px 0; }
+.g-wrap .g-info-table table.dataTable { margin: 0 auto; border-collapse: separate; border-spacing: 0;}
+.g-wrap .g-info-table .table_info { width: 1250px; float: left;}
+.g-wrap .g-info-table .table_pin { width: 440px; float: right;}
+.g-wrap .g-info-table table { border-left: none;}
+.g-wrap .g-info-table table tr { border-bottom: none;}
+.g-wrap .g-info-table table tr th, .g-wrap .g-info-table table tr td { border:none; border-top: 1px solid #ddd; border-left: 1px solid #ddd;}
+.g-wrap .g-info-table table tr .doHanle { padding: 3px 8px; width: 90px;}
+.g-wrap .g-info-table table tr .doHanle button { font-size: 12px; padding: 2px 4px !important; margin: 2px 0px !important;}
+
+.g-wrap .g-info-slide { height: 85px; }
+.g-wrap .g-info-slide .slideCom { width: 820px; height: 30px; line-height: 30px; float: right;}
+.g-wrap .g-info-slide .slideCom p { width: 210px; color: #666; float: left; }
+.g-wrap .g-info-slide .slideCom p span { padding: 0 4px;}
+.g-wrap .g-info-slide .slideCom ul { float: left; margin: 0 8px;}
+.g-wrap .g-info-slide .slideCom ul li a { padding: 2px 8px; border: 1px solid #ddd; text-align: center; font-size: 12px; border-radius: 4px; margin: 0 2px; }
+.g-wrap .g-info-slide .slideCom ul li a:hover, .g-wrap .g-info-slide .slideCom ul li a.active { background: #5BC0DE; border: none; color: #fff; text-decoration: none; padding: 3px 9px;}
+.g-wrap .g-info-slide .slideCom .slide_go { float: left; margin: 0 8px;}
+.g-wrap .g-info-slide .slideCom .slide_go span { font-size: 12px;margin: 4px 0;}
+.g-wrap .g-info-slide .slideCom .slide_go input { text-indent: 8px; width: 50px; height: 30px;}
+
+.g-wrap .g-info-slide .slideCom .numberPage { float: left; margin: 0 8px;}
+.g-wrap .g-info-slide .slideCom .numberPage select { width: 80px; height: 30px; outline: none;}
+.g-wrap .g-info-slide .slideCom .numberPage select option { height: 22px; line-height: 22px; text-indent: 4px;}
+
+
+
+
+
+

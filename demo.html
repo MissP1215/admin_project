@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
+<style>
+@charset "utf-8";
+body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, textarea, select, table, tr, td, header, nav, section, article, footer { margin: 0; padding: 0; box-sizing: border-box;}
+body { font-size: 12px; color: #444; font-family: tahoma, arial, 'PingFang SC', 'Microsoft Yahei', sans-serif; background: #fff;}
+input {outline: none;}
+img { border: none; }
+ul, ol { list-style-type: none; }
+a { font-size: 12px; text-decoration: none; color: #444; }
+label { font-weight: normal;}
+.clearfix:after { content: '.'; height: 0; visibility: hidden; display: block; clear: both;}
+
+.g-body { max-width: 1750px; background: #eff0f4 none repeat scroll 0 0; overflow-x:auto; padding-top: 10px;}
+.g-wrap { padding: 15px; margin: 15px 0 20px 15px; background: #fff; }
+.g-wrap .g-header { width: 100%; border: 1px solid #ddd;  padding: 20px; position: relative; }
+.g-wrap .g-header .g-move { position: absolute; top: -15px; left: 10px; width: 85px; height: 30px; line-height: 30px; padding-left: 10px; background: #fff; color: #333; font-size: 16px; }
+.g-wrap .g-header .g-letter { width: 100%; height: 30px; overflow: hidden; position: relative;}
+.g-wrap .g-header .g-letter .godown { position: absolute; right: 0px; top: 0;}
+.btn-primary:hover, .open .btn-primary.dropdown-toggle {
+    background-color: #1b6aaa;
+    border-color: #428bca;
+}
+.btn:hover, .btn-default:hover, .open .btn.dropdown-toggle, .open .btn-default.dropdown-toggle {
+    background-color: #8b9aa3;
+    border-color: #abbac3;
+}
+.widget-toolbar > .btn-minier {
+    line-height: 18px;
+}
+.btn { background-image: none; border: 5px solid #fff; border-radius: 5px; box-shadow: none; color: #fff; cursor: pointer; display: inline-block; margin: 0; position: relative; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); transition: all 0.15s ease 0s; vertical-align: middle; }
+.btn-minier { border-width: 2px; font-size: 12px; line-height: 18px; padding: 4px 8px; }
+.g-wrap .g-header p { line-height: 30px; font-size: 14px; color: #333;}
+.g-wrap .g-header p span { padding-left: 4px;}
+.g-wrap .g-content { width: 100%; margin: 20px 0; border: 1px solid #ddd;}
+.g-wrap .g-content h3 { width: 100%; height: 45px; line-height: 45px; color: #333; font-size: 16px; border-bottom: 1px solid #ddd; text-indent: 20px;}
+.g-wrap .g-content .g-content-main {  width: 100%; padding: 20px;}
+.g-wrap .g-content .g-content-main .list { height: 200px; border: 1px solid #ddd; margin: 20px; position: relative; }
+.g-wrap .g-content .g-content-main .list:hover, .g-wrap .g-content .g-content-main .list.active { border: 1px solid #52A2F7; box-shadow: 2px 2px 10px #93C4F5, -2px 2px 10px #93C4F5;}
+.g-wrap .g-content .g-content-main .list:hover, .g-wrap .g-content .g-content-main .list.active a { text-decoration: none;}
+.g-wrap .g-content .g-content-main .list:hover, .g-wrap .g-content .g-content-main .list.active a h4 { color: #52A2F7;}
+.g-wrap .g-content .g-content-main .list a { display: block; width: 100%; height: 100%;}
+.g-wrap .g-content .g-content-main .list a:hover,.g-wrap .g-content .g-content-main .list a:active { text-decoration: none; color: #000;}
+.g-wrap .g-content .g-content-main .list a h4 { height: 42px; line-height: 42px; border-bottom: 1px solid #ddd; font-size: 14px; font-weight: normal; color: #000; letter-spacing: 2px; margin: 5px auto; text-align: center; }
+.g-wrap .g-content .g-content-main .list a p { text-align: center; color: #000; overflow: hidden; font-size: 14px; font-weight: normal; height: 46px; line-height: 46px; white-space: nowrap; text-overflow: ellipsis; -webkit-white-space: nowrap; -webkit-text-overflow: ellipsis; -moz-white-space: nowrap; -moz-text-overflow: ellipsis; -ms-white-space: nowrap; -ms-text-overflow: ellipsis; letter-spacing: 1px; }
+.g-wrap .g-content .g-content-main .list a p span { font-weight: normal;}
+.g-wrap .g-content .g-content-main .list a p span { font-size: 26px; margin: 0 0 0 5px; padding: 2px 26px 2px 5px; }
+
+.g-wrap .g-content .g-content-main .list a p.goUp, .g-wrap .g-content .g-content-main .list a p.goDown {
+	width: calc(100% - 30px);
+	position: absolute;
+	bottom: 20px;
+/*	left: 20px;*/
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+}
+.g-wrap .g-content .g-content-main .list a p.goUp span { color: #00af56; background: url(images/goUp.png) no-repeat top right;background-size: 25px 25px; font-size: 18px; }
+.g-wrap .g-content .g-content-main .list a p.goDown span { color: #e85142; background: url(images/goDown.png) no-repeat top right;background-size: 25px 25px; font-size: 18px;}
+.g-wrap .g-footer { width: 100%; border: 1px solid #ddd; margin: 0 0 40px 0; }
+.g-wrap .g-footer h3 { width: calc(100% - 40px); height: 45px; line-height: 45px; color: #333; font-size: 16px; border-bottom: 1px solid #ddd; margin: 0 20px;}
+.g-wrap .g-footer .g-footer-main { margin: 20px 0;}
+.g-wrap .g-footer .g-footer-main p { height: 32px; line-height: 32px; border: 1px solid #ddd; margin: 5px 20px; width: calc(100% - 40px); border-radius: 4px; text-indent: 20px;}
+.g-wrap .g-footer .g-footer-main p strong { padding: 0 4px; color: #f00;}
+</style>
+</head>
+<body class="g-body">
+	<div class="g-wrap row">
+		<div class="g-header">
+			<div class="g-move">相关详情</div>
+			<div class="g-letter">
+				<button class="btn btn-minier btn-primary godown">展开</button>
+				<p>今日开服：<span>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</span></p>
+				
+			</div>
+		</div>
+		<div class="g-content row">
+			<h3>关键数据概览</h3>
+			<div class="g-content-main" id="g-content-main">
+				<div class="list col-lg-2 col-md-3 col-sm-4">
+					<a href="javascript:;">
+						<h4>标题</h4>
+						<p><span>0123456789</span></p>
+						<p>周同比:<span>10.25%</span></p>
+					</a>
+				</div>
+				<div class="list col-lg-2 col-md-3 col-sm-4">
+					<a href="javascript:;">
+						<h4>标题</h4>
+						<p>标题:<span>1123455</span></p>
+						<p>周同比:<span>10.25%</span></p>
+					</a>
+				</div>
+				<div class="list col-lg-2 col-md-3 col-sm-4">
+					<a href="javascript:;">
+						<h4>标题</h4>
+						<p>标题:<span>1123455</span></p>
+						<p>标题:<span>1123455</span></p>
+						<p>周同比:<span>-10.25%</span></p>
+					</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="g-footer">
+			<h3>统计昨日有关数据</h3>
+			<div class="g-footer-main">
+				<p>截止昨日已开服的代理数<strong>1111</strong>截止昨日已开启的服务器总数<strong>2222</strong></p>
+				<p>昨日全平台的总充值金额<strong>33333</strong>以周为单位，对比上周今日的金额<strong>44444</strong></p>
+				<p>昨日arppu值<strong>55555</strong>，即充值总额/付费玩家。以周为单位，对比上周今日的arppu <strong>666666</strong></p>
+			</div>
+		</div>
+	</div>
+<script>
+	var oList = $('.list');
+	oList.click(function(){
+		var index = $(this).index();
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+	var downBtn = $('.g-wrap .g-header .g-letter .godown');
+	var oTime = true;
+	downBtn.click(function(){
+		if (oTime) {
+			$(this).parent().css('height','auto');
+			$(this).html('收缩');
+			oTime = false;
+		}else{
+			$(this).parent().css('height','30px');
+			$(this).html('展开');
+			oTime = true;
+		};
+	});
+
+
+	function addClass(obj, sClass) { 
+	    var aClass = obj.className.split(' ');
+	    if (!obj.className) {
+	        obj.className = sClass;
+	        return;
+	    }
+	    for (var i = 0; i < aClass.length; i++) {
+	        if (aClass[i] === sClass) return;
+	    }
+	    obj.className += ' ' + sClass;
+	}
+
+
+	var aDiv = document.getElementById('g-content-main');
+	var aP = aDiv.getElementsByTagName('p');
+	var sear=new RegExp('周同比');
+	var numb=new RegExp('-');
+	for (var i = 0;  i<= aP.length - 1; i++) {
+		aP[i].index=i;
+		if (sear.test(aP[i].innerHTML) && numb.test(aP[i].innerHTML)) {
+			addClass(aP[i],"goDown");
+		}else if(sear.test(aP[i].innerHTML)) {
+			addClass(aP[i],"goUp");
+		};
+	};
+
+	
+
+	function downP(){
+		var aFin = $('.g-wrap .g-content .g-content-main .list a');
+		for (var i = aFin.length - 1; i >= 0; i--) {
+			if (aFin.eq(i).find('p').length <= 2) {
+				aFin.eq(i).find('p').eq(0).css({
+					'height': '98px',
+					'line-height': '98px'
+				});
+			};
+		};
+	}
+	downP();
+
+</script>
+</body>
+</html>

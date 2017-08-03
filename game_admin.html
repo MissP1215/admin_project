@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/game_admin.css">
+<style>
+    .div_box{width: 100%;height: 100%; margin-bottom: 5px;}
+    .direction{width:100%; border:2px solid #BCE8F1; height:38px;line-height:38px; padding-left: 16px; background-color:#D9EDF7;color:#34A5E8;}
+    .direction font  { display: inline-block; margin: -2px 0 0 4px; }
+    .direction span { margin: 0 16px; color:#F25252;cursor:pointer; }
+    .div1 { background-color:#ededed;}
+    .div1,.div2{width:100%; border:2px solid #BCE8F1;display: none;}
+    .div2 { padding-left:30px; background: #f9f9f9;}
+    .div2 li { display: none; margin: 10px 0;}
+    .div2 li.list_active {display: block;}
+    .div1 a, .div2 a{width:150px;text-align:left;margin:4px 0;}
+    .div1 a font, .div12 a font { color: #666;}
+    .div1 a.active font { color: #59aa5b;}
+    .font-bia{color:red;display:none;margin-left:10px;}
+    .lock_show{border:1px solid #ddd ;float:right;margin-right:15%;border-radius: 5px;}
+    .g-channel { width: 100%;  }
+    .layui-layer { overflow-y:auto;}
+    #g-wrap { display: none;}
+    .layui-layer-title { background: #65CEA7; color: #fff; font-size: 14px; border-bottom: 1px solid #f2f2f2; position: relative;}
+	#hideHandle { display: block; width: 30px; height: 30px; position: absolute; top: 50%; margin-top: -15px; right: 20px; background: url(images/icon.png) no-repeat -149px -31px; cursor: pointer; }
+	.layui-layer-content { padding: 20px;}
+</style>
+</head>
+<body class="g-body">
+<div class="g-wrap">
+	<button id="platformBtn">平台</button>
+	<div class="g-modal-content" id="g-wrap">
+		<div class="layui-layer-shade" id="layui-layer-shade2" times="2" style="z-index:999; background-color:#000; opacity:0.3; filter:alpha(opacity=30);"></div>
+		<div class="layui-layer layui-layer-page layui-layer-rim layer-anim" id="layui-layer2" type="page" times="2" showtime="0" contype="string" style="z-index: 999; width: 70%; height: 70%; top: 69.5px; left: 260px;">
+			<div class="layui-layer-title" style="cursor: move;" move="ok">选择品台<span id="hideHandle"></span></div>
+			<div id="" class="layui-layer-content">
+				<div class="div_box">
+				    <div class="direction">
+				    	<input value="" class="headerList" type="checkbox"><font>冰鸟专服</font><span class="littlehandle">显示</span>
+				    </div>
+					<div class="panel-body div1">
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="2" type="checkbox" onclick="aInputHandle($(this),0)" />
+				            <font>优象</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="6" type="checkbox" onclick="aInputHandle($(this),1)" />
+				            <font>君海</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="64" type="checkbox" onclick="aInputHandle($(this),2)" />
+				            <font>123</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="1" type="checkbox" onclick="aInputHandle($(this),3)" />
+				            <font>测试62</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="66" type="checkbox" onclick="aInputHandle($(this),4)" />
+				            <font>小呆呆</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="65" type="checkbox" onclick="aInputHandle($(this),5)" />
+				            <font>65456</font>
+				        </a>
+				    </div>
+					<div class="g-channel div2">
+						<ul>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>君海渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>君海渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>君海渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>君海渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>君海渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>君海渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="div_box">
+				    <div class="direction">
+				    	<input value="" class="headerList" type="checkbox"><font>冰鸟专服</font><span class="littlehandle">显示</span>
+				    </div>
+					<div class="panel-body div1">
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="2" type="checkbox" onclick="aInputHandle($(this),0)" />
+				            <font>优象</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="6" type="checkbox" onclick="aInputHandle($(this),1)" />
+				            <font>君海</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="64" type="checkbox" onclick="aInputHandle($(this),2)" />
+				            <font>123</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="1" type="checkbox" onclick="aInputHandle($(this),3)" />
+				            <font>测试62</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="66" type="checkbox" onclick="aInputHandle($(this),4)" />
+				            <font>小呆呆</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="65" type="checkbox" onclick="aInputHandle($(this),5)" />
+				            <font>65456</font>
+				        </a>
+				    </div>
+					<div class="g-channel div2">
+						<ul>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>君海渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>君海渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>君海渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>君海渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>君海渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>君海渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="div_box">
+				    <div class="direction">
+				    	<input value="" class="headerList" type="checkbox"><font>冰鸟专服</font><span class="littlehandle">显示</span>
+				    </div>
+					<div class="panel-body div1">
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="2" type="checkbox" onclick="aInputHandle($(this),0)" />
+				            <font>优象</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="6" type="checkbox" onclick="aInputHandle($(this),1)" />
+				            <font>君海</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="64" type="checkbox" onclick="aInputHandle($(this),2)" />
+				            <font>123</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="1" type="checkbox" onclick="aInputHandle($(this),3)" />
+				            <font>测试62</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="66" type="checkbox" onclick="aInputHandle($(this),4)" />
+				            <font>小呆呆</font>
+				        </a>
+				        <a href="javascript:;" class="btn btn-default washed">
+				        	<input name="node_ids" value="65" type="checkbox" onclick="aInputHandle($(this),5)" />
+				            <font>65456</font>
+				        </a>
+				    </div>
+					<div class="g-channel div2">
+						<ul>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>君海渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>君海渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>君海渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>君海渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>君海渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>君海渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>君海渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+							<li>
+								<a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="2" type="checkbox">
+						            <font>优象渠道1</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="6" type="checkbox">
+						            <font>优象渠道2</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="64" type="checkbox">
+						            <font>优象渠道3</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="1" type="checkbox">
+						            <font>优象渠道4</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="66" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+						        <a href="javascript:;" class="btn btn-default washed">
+						        	<input name="node_ids" value="65" type="checkbox">
+						            <font>优象渠道5</font>
+						        </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+
+var oPlatformBtn = $('#platformBtn');
+var oGwrap = $('#g-wrap');
+var oHideHandle = $('#hideHandle');
+oPlatformBtn.click(function(){
+	oGwrap.css('display','block');
+});
+oHideHandle.click(function(){
+	oGwrap.css('display','none');
+});
+
+//显示， 隐藏
+var aLittle = $('.littlehandle');
+
+aLittle.click(function(){
+	$(this).parent().nextAll().toggle();
+});
+
+var aA = $('.div1 a');
+var aInput = $('.div1 input');
+var oDiv2 = $('.div2');
+var aIndex = null;
+
+aA.click(function(){
+	$(this).addClass('active').siblings().removeClass('active');
+	var aLi = $(this).parent().nextAll().find('li');
+	var index = $(this).index();
+	aIndex = index;
+	aLi.eq(index).addClass('list_active').siblings().removeClass('list_active');
+});
+
+var cheFisrt = $('.direction input');
+
+function aAHandle(){
+	if ($(this).prop('checked') == true) {
+		$(this).parent().nextAll().find('input').prop('checked',true);
+	}else{
+		$(this).parent().nextAll().find('input').prop('checked',false);
+	};
+}
+cheFisrt.click(aAHandle);
+
+function aInputHandle(_this,aIndex){
+	var aLiInput = _this.parent().parent().nextAll().find('li').eq(aIndex).find('input');
+	if (_this.prop('checked') == true) {
+		aLiInput.prop('checked',true);
+	}else{
+		
+		aLiInput.prop('checked',false);
+		cheFisrt.prop('checked',false);
+	};
+}
+
+</script>
+</body>
+</html>
